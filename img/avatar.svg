@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea"/>
+      <stop offset="100%" style="stop-color:#764ba2"/>
+    </linearGradient>
+    <linearGradient id="face" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffeaa7"/>
+      <stop offset="100%" style="stop-color:#fab1a0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="100" fill="url(#bg)"/>
+
+  <!-- Face -->
+  <circle cx="100" cy="85" r="45" fill="url(#face)"/>
+
+  <!-- Hair -->
+  <path d="M55 70 Q100 40 145 70 Q140 50 100 45 Q60 50 55 70" fill="#2d3436"/>
+
+  <!-- Eyes -->
+  <circle cx="85" cy="78" r="3" fill="#2d3436"/>
+  <circle cx="115" cy="78" r="3" fill="#2d3436"/>
+  <circle cx="86" cy="77" r="1" fill="white"/>
+  <circle cx="116" cy="77" r="1" fill="white"/>
+
+  <!-- Nose -->
+  <ellipse cx="100" cy="88" rx="2" ry="3" fill="#e17055" opacity="0.6"/>
+
+  <!-- Mouth -->
+  <path d="M92 98 Q100 105 108 98" stroke="#e17055" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- Body -->
+  <path d="M70 140 Q100 130 130 140 L140 200 L60 200 Z" fill="#74b9ff"/>
+
+  <!-- Decorative elements -->
+  <circle cx="30" cy="30" r="8" fill="white" opacity="0.2"/>
+  <circle cx="170" cy="170" r="6" fill="white" opacity="0.2"/>
+  <circle cx="180" cy="40" r="4" fill="white" opacity="0.3"/>
+  <circle cx="20" cy="160" r="5" fill="white" opacity="0.3"/>
+</svg>
