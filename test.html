@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Page</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 2rem; }
+        .test { margin: 1rem 0; padding: 1rem; border: 1px solid #ccc; }
+        .success { background: #d4edda; border-color: #c3e6cb; }
+        .error { background: #f8d7da; border-color: #f5c6cb; }
+    </style>
+</head>
+<body>
+    <h1>Website Test Page</h1>
+
+    <div id="css-test" class="test">
+        <h3>CSS Test</h3>
+        <p>Testing if CSS file loads...</p>
+    </div>
+
+    <div id="js-test" class="test">
+        <h3>JavaScript Test</h3>
+        <p>Testing if JavaScript works...</p>
+    </div>
+
+    <div id="fetch-test" class="test">
+        <h3>Fetch Test</h3>
+        <p>Testing if markdown file can be fetched...</p>
+    </div>
+
+    <div id="marked-test" class="test">
+        <h3>Marked.js Test</h3>
+        <p>Testing if markdown parsing works...</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        // Test JavaScript
+        document.getElementById('js-test').classList.add('success');
+        document.getElementById('js-test').innerHTML += '<p>✓ JavaScript is working!</p>';
+
+        // Test Fetch
+        fetch('blog/welcome.md')
+            .then(response => {
+                if (response.ok) {
+                    document.getElementById('fetch-test').classList.add('success');
+                    document.getElementById('fetch-test').innerHTML += '<p>✓ Can fetch blog/welcome.md</p>';
+                    return response.text();
+                } else {
+                    throw new Error('Fetch failed: ' + response.status);
+                }
+            })
+            .then(content => {
+                // Test Marked.js
+                if (typeof marked !== 'undefined') {
+                    const html = marked.parse('# Test\nThis is **bold** text.');
+                    document.getElementById('marked-test').classList.add('success');
+                    document.getElementById('marked-test').innerHTML += '<p>✓ Marked.js is working!</p>';
+                    document.getElementById('marked-test').innerHTML += '<div>Sample output: ' + html + '</div>';
+                } else {
+                    document.getElementById('marked-test').classList.add('error');
+                    document.getElementById('marked-test').innerHTML += '<p>✗ Marked.js not loaded</p>';
+                }
+
+                // Show welcome.md content
+                document.getElementById('fetch-test').innerHTML += '<details><summary>welcome.md content</summary><pre>' + content + '</pre></details>';
+            })
+            .catch(error => {
+                document.getElementById('fetch-test').classList.add('error');
+                document.getElementById('fetch-test').innerHTML += '<p>✗ ' + error.message + '</p>';
+            });
+
+        // Test CSS
+        const cssTest = document.getElementById('css-test');
+        const testStyle = window.getComputedStyle(cssTest);
+        if (testStyle.fontFamily) {
+            cssTest.classList.add('success');
+            cssTest.innerHTML += '<p>✓ CSS styles are applied!</p>';
+        } else {
+            cssTest.classList.add('error');
+            cssTest.innerHTML += '<p>✗ CSS not loading properly</p>';
+        }
+    </script>
+</body>
+</html>
